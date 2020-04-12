@@ -1,5 +1,5 @@
 ## leetcode
-the python/C/JAVA code to solve the leetcode problem
+the python/JAVA code to solve the leetcode problem
 
 #### 1.两数之和-简单（TwoSum-simple）
 ###### 题目详情
