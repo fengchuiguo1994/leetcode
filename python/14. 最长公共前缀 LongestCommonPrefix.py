@@ -21,6 +21,15 @@ def longestCommonPrefix(strs):
             sts += tmp
     return sts
 
+def copyother(strs):
+    res = ""
+    for i in zip(*strs):
+        if len(set(i)) == 1:
+            res += i[0]
+        else:
+            break
+    return res
+
 if __name__ == "__main__":
     words = 'qwertyuiopasdfghjklzxcvbnm'
     prefix = ""
@@ -40,3 +49,7 @@ if __name__ == "__main__":
     start = time.time()
     print(longestCommonPrefix(suf))
     print("longestCommonPrefix use time {0:.10f} s".format(time.time()-start))
+    
+    start = time.time()
+    print(copyother(suf))
+    print("copyother use time {0:.10f} s".format(time.time()-start))
