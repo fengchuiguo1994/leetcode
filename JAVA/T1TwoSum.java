@@ -15,9 +15,6 @@ public class T1TwoSum {
     public static int[] method1(int[] nums,int target){
         for(int i=0;i<nums.length-1;i++){
             for(int j=i+1;j<nums.length;j++){
-                if(nums[i]==nums[j]){
-                    continue;
-                }
                 if(nums[i]+nums[j]==target){
                     int[] result = {i,j};
                     return result;
@@ -31,7 +28,7 @@ public class T1TwoSum {
     public static int[] method2(int[] nums,int target){
         Map<Integer,Integer> tmpdict = new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            if(tmpdict.containsKey(target-nums[i])){
+            if(tmpdict.containsKey(target-nums[i]) && tmpdict.get(target-nums[i])!=i){
                 int[] result = {tmpdict.get(target-nums[i]),i};
                 return result;
             }
