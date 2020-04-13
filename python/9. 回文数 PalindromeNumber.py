@@ -15,7 +15,7 @@ def method2(x):
     if x < 0:
         return False
     aa = str(x)
-    return aa == aa[::1]
+    return aa == aa[::-1]
             
 if __name__ == "__main__":
     N = random.randint(-2**32,2**32)
