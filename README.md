@@ -19,6 +19,7 @@ method1 use time 2.2591547966 s
 method1 use time 0.0500032902 s
 method1 use time 0.0010178089 s
 ```
+在JAVA代码中，实现了shuffle的算法，实际可以用Collections.shuffle()来实现。shuffle算法是从数组末尾开始，末尾的数字出现在任意位置的概率是1/N，倒数第二个出现在任意位置的概率是(N-1)/N * 1/(N-1) = 1/N。
 
 #### 2.两数相加
 利用链表实现多位数的相加,难点是控制不等长的链表,然后需要记得进位。时间复杂度是max{O(N),O(M))。所以是O(N)
