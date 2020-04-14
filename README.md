@@ -115,4 +115,4 @@ JAVA和python的字符串切片是一致的，都是左闭右开的
 除了最后一步的合并是需要读取并且比较的，其余的步骤均可独立完成，互不影响，所以可以用多线程来开辟多个线程去完成，大大的节省时间。<br/>
 另外提一下合并的时间复杂度：假设有M个文件，我们需要维持一个长度为M的有序数组（用选择排序），时间复杂度是O(MlogM),所有的文件都要遍历一遍。所以总时间是O(MlogM)+O(N)。N>>M，O(N)。基本上是个线性的时间。
 
-python代码中mergeTwoLists2是针对LeetCode的，mergeTwoLists1是针对我自己的代码，贴进LeetCode是错误的。我的链表的实现见SingleLinkedList.py。JAVA代码可以直接使用
+python代码中mergeTwoLists2是针对LeetCode的，mergeTwoLists1是针对我自己的代码，贴进LeetCode是错误的。我的链表的实现见SingleLinkedList.py。JAVA代码可以直接使用。查看他人代码的时候发现，不用去新建新的node，可以直接修改原有的node的指向。不用维护传入的两个链表。
