@@ -115,7 +115,32 @@ JAVA和python的字符串切片是一致的，都是左闭右开的
 除了最后一步的合并是需要读取并且比较的，其余的步骤均可独立完成，互不影响，所以可以用多线程来开辟多个线程去完成，大大的节省时间。<br/>
 另外提一下合并的时间复杂度：假设有M个文件，我们需要维持一个长度为M的有序数组（用选择排序），时间复杂度是O(MlogM),所有的文件都要遍历一遍。所以总时间是O(MlogM)+O(N)。N>>M，O(N)。基本上是个线性的时间。
 
-python代码中mergeTwoLists2是针对LeetCode的，mergeTwoLists1是针对我自己的代码，贴进LeetCode是错误的。我的链表的实现见SingleLinkedList.py。JAVA代码可以直接使用。查看他人代码的时候发现，不用去新建新的node，可以直接修改原有的node的指向。不用维护传入的两个链表。
+python代码中mergeTwoLists2是针对LeetCode的，mergeTwoLists1是针对我自己的代码，贴进LeetCode是错误的。我的链表的实现见SingleLinkedList.py。JAVA代码可以直接使用。查看他人代码的时候发现，不用去新建新的node，可以直接修改原有的node的指向。不用维护传入的两个链表。<br/>
+二路归并
+```
+aa = [1,3,5]
+bb = [2,4]
+i = 0
+j = 0
+while i<len(aa) and j<len(bb):
+    if aa[i] >= bb[j]:
+        print(bb[j])
+        j += 1
+    else:
+        print(aa[i])
+        i += 1
+
+if i < len(aa):
+    for t in range(i,len(aa)):
+        print(aa[t])
+        
+if j < len(bb):
+    for t in range(j,len(bb)):
+        print(bb[t])
+```
+多路归并
+```
+```
 
 #### 26.删除排序数组中的重复项-简单（RemoveDuplicatesfromSortedArray-simple）
 ###### 题目详情
@@ -130,3 +155,9 @@ python代码中mergeTwoLists2是针对LeetCode的，mergeTwoLists1是针对我�
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
 ###### 题解思路
 跟26一模一样的思路，我们可以用一个变量记录不删除的数量，同时它也是不删除数的索引，每当碰到新数的时候，将新数赋值给该索引，该变量+1。
+
+#### 28.实现strStr-简单（ImplementstrStr-simple）
+###### 题目详情
+实现 strStr() 函数。给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
+
+我其实没什么好思路，就是用的切片来完成的。有点投机，翻看了一下其它人的答案基本上也是用的切片。遇到这种需求最正确的做法应当是用正则表达式。
