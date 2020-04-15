@@ -50,7 +50,7 @@ method1 use time 0.0010178089 s
 1：取模取余运算，在JAVA和C中，是用的舍弃小数点的方式，但是在python中却是用的向下取整的方式。在正数运算的场合，结果一致，但是在有负数参与的时候就有不一致。
 ```
 return a-n*int(a/n)  # 取模运算在JAVA和C中
-return a-n*int(a/n)  # 在python中
+return a-n*(a//n)  # 在python中
 
 return int(a/n)  # 取余运算在JAVA和C中
 return a//n  # 在python中
