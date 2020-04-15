@@ -163,3 +163,30 @@ if j < len(bb):
 <strong>KMP算法，日后实现</strong>
 
 我其实没什么好思路，就是用的切片来完成的。有点投机，翻看了一下其它人的答案基本上也是用的切片。遇到这种需求最正确的做法应当是用正则表达式。还可以用KMP算法来实现
+
+#### 35.搜索插入位置-简单（SearchInsertPosition-simple）
+###### 题目详情
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。你可以假设数组中无重复元素。
+###### 题解思路
+这种类型的题目比较简单，其实就是要确定target在数组中的位置。比如在JAVA中自带的二分查找（Collections.binarySearch()）就可以很好的完成这种任务，当目标存在就返回目标的位置，当目标不存在，就返回排序后理应在的位置（然后取负值表示没有找到，实际应用）。
+
+考察点是二分查找。二分查找算法，基本和JAVA自带的是一致的。
+```
+public static int searchInsert(int[] nums, int target) {
+    int low = 0;
+    int high = nums.length-1;
+    int med = (low+high)/2;
+    while(low <= high){
+        if(target > nums[med]){
+            low = med + 1;
+        } else if(target < nums[med]) {
+            high = med - 1;
+        } else {
+            return med;
+        }
+        med = (low+high)/2;
+    }
+    return -(low+1); // 这里返回值是-(low+1)而不是-low，是为了区分0的情况。一旦target等于第一个数，返回值是0，但是一旦target小于第一个数，返回值依然是0，为了避免这个模糊的情况，选择-(low+1)
+}
+```
+
