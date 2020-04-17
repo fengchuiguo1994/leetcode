@@ -237,3 +237,11 @@ JAVA代码对应python代码的maxSubArray2，maxSubArray1是将maxpre存入了�
 输出: "100"<br/>
 ###### 题解思路
 和66一模一样。略
+
+#### 67.x的平方根-简单（SqrtX-simple）
+###### 题目详情
+实现int sqrt(int x)函数。计算并返回x的平方根，其中x 是非负整数。由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+###### 题解思路
+[微积分中的牛顿法](https://zhuanlan.zhihu.com/p/52751771)。
+
+可以尝试把JAVA代码中的double a改成float a试试。
