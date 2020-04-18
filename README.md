@@ -326,3 +326,9 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 root的高度的子问题就是某个节点到left和right，可以到就+1，不可以就结束了。
 ###### 代码见100
 #### 107，108，110，111，112日后学好树结构再来更新。
+
+#### 118.杨辉三角-简单（PascalTriangle-simple）
+###### 题目详情
+给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+###### 题解思路
+略
