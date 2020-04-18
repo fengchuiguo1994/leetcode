@@ -271,3 +271,58 @@ nums2 = [2,5,6],       n = 3 <br/>
 输出:[1,2,2,3,5,6]
 ###### 题解思路
 因为nums1自己占据了自己低索引的数据，所以，我们用merge的倒算法，从大往小的排序。思路见T21的介绍。
+
+#### 100.相同的树-简单（SameTree-simple）
+###### 题目详情
+给定两个二叉树，编写一个函数来检验它们是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+###### 题解思路
+比较简单的类型，就是遍历每个节点，如果当前节点的值不一样，就是false，同时要判断是否同时具有左节点或者右节点，如果一个树有左，另一个没有，那就false。循环判断。
+
+更多的采用JAVA代码的样子来完成功能。python中如果用递归来实现，代码更加少而且清楚
+```
+def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+    if p == None and q == None:
+        return True
+    if (p == None and q != None) or (q == None and p != None):
+        return False
+    if p.val != q.val:
+        return False
+    else:
+        return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+```
+非递归版本
+```
+def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+    def check(node1, node2):
+        if not node1 and not node2:
+            return True
+        if not node1 or not node2:
+            return False
+        if node1.val != node2.val:
+            return False
+        return True
+    queue = []
+    queue.append((p, q))
+    while queue:
+        tempp, tempq = queue.pop(0)
+        if not check(tempp, tempq):
+            return False
+        if tempp:
+            queue.append((tempp.left, tempq.left))
+            queue.append((tempp.right, tempq.right))
+    return True
+```
+#### 101.对称二叉树-简单（SymmetricTree-simple）
+###### 题目详情
+给定一个二叉树，检查它是否是镜像对称的。
+###### 题解思路
+要想判断root是不是对称，我们首先需要判断两个子树root.left和root.right是不是对称的。而判断root.left和root.right是不是对称的，则需要判断更下级的子树：root.left.right和root.right.left以及root.left.left和root.right.right。所以用递归实现就很简单了。才知道JAVA不可以嵌套函数。
+
+###### 代码见100
+#### 101.对称二叉树-简单（SymmetricTree-simple）
+###### 题目详情
+给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+###### 题解思路
+root的高度的子问题就是某个节点到left和right，可以到就+1，不可以就结束了。
+###### 代码见100
+#### 107，108，110，111，112日后学好树结构再来更新。
