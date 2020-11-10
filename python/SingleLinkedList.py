@@ -26,6 +26,12 @@ class List:
             for i in x:
                 self.add(i)
     
+    def __len__(self):
+        """
+        获取表的长度
+        """
+        return self.length
+    
     def isEmpty(self):
         """
         是否为空
@@ -166,10 +172,85 @@ class List:
                 pnext = pnext.getNext()
                 count += 1
     
+    def reverse(self):
+        """
+        反转
+        """
+        if self.length < 2:
+            pass
+        else:
+            pre = self.head
+            current = pre.getNext()
+            pnext = current.getNext()
+            pre.setNext(None)
+            while pnext:
+                current.setNext(pre)
+                pre = current
+                current = pnext
+                pnext = current.getNext()
+            current.setNext(pre)
+            self.head = current
+    
+    def reverseSub(self,start,end):
+        """
+        反转指定区域的链表
+        """
+        if start >= end:
+            raise Exception('指定的索引start必须小于end')
+        elif start > self.length-1:
+            raise Exception('指定的索引start必须小于链表长度')
+        elif start < 0:
+            raise Exception('指定的索引start必须大于0')
+        if end > self.length:
+            end = self.length        
+        if end - start == 1:
+            pass
+    
+    def for_each(self,proc):
+        """
+        遍历
+        aa.for_each(print)
+        """
+        current = self.head
+        while current is not None:
+            proc(current.getNode())
+            current = current.getNext()
+    
+    def elements(self):
+        """
+        迭代器
+        """
+        current = self.head
+        while current is not None:
+            yield current.getNode()
+            current = current.getNext()
+            
+    def filter(self,pred):
+        """
+        筛选生成器
+        for i in aa.filter(List.even):
+            print(i)
+        """
+        current = self.head
+        while current is not None:
+            if pred(current.getNode()):
+                yield current.getNode()
+            current = current.getNext()
+    
+    @staticmethod
+    def even(n):
+        return n%2==0
+    
     def size(self):
+        """
+        获取表的长度
+        """
         return self.length
     
     def destroy(self):
+        """
+        析构
+        """
         self.head = None
         self.length = 0
             
@@ -185,3 +266,30 @@ class List:
     
     def __str__(self):
         return self.__repr__()
+    
+class LList(List):
+    def __init__(self,x=[]):
+        List.__init__(self,x)
+        if len(x) == 0:
+            self.end = None
+        else:
+            nodes = self.head
+            while nodes.getNext():
+                nodes = nodes.getNext()
+            self.end = nodes
+    
+    def add(self,data):
+        """
+        添加元素
+        """
+        if not isinstance(data,ListNode):
+            temp = ListNode(data)
+        else:
+            temp = data
+        if self.isEmpty():
+            self.head = temp
+            self.end = temp
+        else:
+            self.end.setNext(temp)
+            self.end = self.end.getNext()
+        self.length += 1
